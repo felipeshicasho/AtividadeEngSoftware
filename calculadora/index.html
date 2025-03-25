@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: hsl(0, 0%, 95%);
+      }
+      #calculator {
+        font-family: Arial, sans-serif;
+        background-color: hsl(0, 0%, 15%);
+        border-radius: 15px;
+        max-width: 500px;
+        overflow: hidden;
+      }
+      #display {
+        width: 100%;
+        padding: 20px;
+        font-size: 5rem;
+        text-align: left;
+        border: none;
+        background-color: hsl(0, 0%, 20%);
+        color: white;
+      }
+      #keys {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        padding: 25px;
+      }
+      button {
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        border: none;
+        background-color: hsl(0, 0%, 30%);
+        color: white;
+        font-size: 3rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: hsl(0, 0%, 40%);
+      }
+      button:active {
+        background-color: hsl(0, 0%, 50%);
+      }
+      .operator-btn {
+        background-color: hsl(35, 100%, 55%);
+      }
+      .operator-btn:hover {
+        background-color: hsl(35, 100%, 65%);
+      }
+      .operator-btn:active {
+        background-color: hsl(35, 100%, 75%);
+      }
+    </style>
+  </head>
+  <body>
+    
+
+    <script>
+        const calculadora = document.createElement("div");
+        calculadora.id = "calculator";
+        document.body.appendChild(calculadora);
+
+        const display = document.createElement("input");
+        display.id = "display";
+        display.readOnly = true;
+        calculadora.appendChild(display);
+
+        const keys = document.createElement("div");
+        keys.id = "keys";
+        calculadora.appendChild(keys);
+
+        const buttons = [
+            { text: "+", class: "operator-btn", onclick: "appendToDisplay('+')" },
+            { text: "7", onclick: "appendToDisplay('7')" },
+            { text: "8", onclick: "appendToDisplay('8')" },
+            { text: "9", onclick: "appendToDisplay('9')" },
+            { text: "-", class: "operator-btn", onclick: "appendToDisplay('-')" },
+            { text: "4", onclick: "appendToDisplay('4')" },
+            { text: "5", onclick: "appendToDisplay('5')" },
+            { text: "6", onclick: "appendToDisplay('6')" },
+            { text: "*", class: "operator-btn", onclick: "appendToDisplay('*')" },
+            { text: "1", onclick: "appendToDisplay('1')" },
+            { text: "2", onclick: "appendToDisplay('2')" },
+            { text: "3", onclick: "appendToDisplay('3')" },
+            { text: "/", class: "operator-btn", onclick: "appendToDisplay('/')" },
+            { text: "0", onclick: "appendToDisplay('0')" },
+            { text: ".", onclick: "appendToDisplay('.')" },
+            { text: "=", onclick: "calculate()" },
+            { text: "C", class: "operator-btn", onclick: "clearDisplay()" },
+        ];
+        buttons.forEach(({ text, class: className,
+            onclick }) => {
+            const button = document.createElement("button");
+            button.textContent = text;
+            button.className = className;
+            button.onclick = () => eval(onclick);
+            keys.appendChild(button);
+        });
+        
+        function appendToDisplay(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = "";
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+
+
+
+        
+    </script>
+  </body>
+</html>
