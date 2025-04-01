@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.20.12/babel.min.js"></script> 
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        let frase = "Venha estudar na fatec";
+        let contador = 0;
+
+        function MeuElemento ( {texto}) {
+            return (
+                <div>
+                    <h2>{texto}</h2>
+                </div>
+            )
+        }
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        function tick(){
+            if(contador < frase.length)
+            {
+                texto += frase[contador];
+                contador++;
+
+                root.render(<MeuElemento texto={texto}/>);
+            }
+        }
+        let texto = "";
+        setInterval(tick, 1000);
+    </script>
+</body>
+</html>
